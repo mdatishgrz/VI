@@ -55,7 +55,7 @@ export default function VehicleHubDetailPage() {
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-6 py-8 sm:px-8 lg:px-10">
           <AutoVersePageIntro
             eyebrow={`${category.shortLabel} Hub`}
             title={category.headline}

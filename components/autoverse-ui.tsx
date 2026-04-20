@@ -44,25 +44,7 @@ export function AutoVerseWorkspace({
   className?: string
 }) {
   return (
-    <div className={cn('relative min-h-full overflow-hidden', className)}>
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.16), transparent 22%), radial-gradient(circle at 86% 14%, rgba(34, 197, 94, 0.11), transparent 18%), radial-gradient(circle at 50% 82%, rgba(125, 211, 252, 0.18), transparent 25%), linear-gradient(180deg, #F9FBFF 0%, #EEF5FF 50%, #E6EEF8 100%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(circle_at_center,black,transparent_82%)]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(37, 99, 235, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(37, 99, 235, 0.07) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-        }}
-      />
-      <div className="pointer-events-none absolute left-6 top-24 h-72 w-72 rounded-full bg-[#2563EB]/12 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-64 h-80 w-80 rounded-full bg-[#22C55E]/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-20 left-1/3 h-72 w-72 rounded-full bg-cyan-300/14 blur-3xl" />
+    <div className={cn('relative min-h-full overflow-hidden bg-white', className)}>
       <div className="relative z-10">{children}</div>
     </div>
   )

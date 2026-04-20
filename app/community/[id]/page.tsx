@@ -58,7 +58,7 @@ export default function CommunityPostDetailPage() {
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-6 py-8 sm:px-8 lg:px-10">
           {searchParams.get('edited') && (
             <div className={cn(avPanelSoft, 'mb-6 p-5 text-sm text-slate-700')}>
               Your static draft was updated successfully. In a real product this change would now sync across the feed.

@@ -27,7 +27,7 @@ export default function ExpertsPage() {
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-6 py-8 sm:px-8 lg:px-10">
           <AutoVersePageIntro
             eyebrow="Verified Experts"
             title="People you can trust when the thread needs deeper guidance."

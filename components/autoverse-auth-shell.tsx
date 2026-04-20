@@ -21,18 +21,8 @@ export function AutoVerseAuthShell({
   children: ReactNode
 }) {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F5F9FF] text-slate-950 selection:bg-[#2563EB]/20">
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.18), transparent 22%), radial-gradient(circle at 86% 14%, rgba(34, 197, 94, 0.11), transparent 18%), radial-gradient(circle at 50% 82%, rgba(125, 211, 252, 0.18), transparent 25%), linear-gradient(180deg, #F9FBFF 0%, #EEF5FF 50%, #E6EEF8 100%)',
-        }}
-      />
-      <div className="pointer-events-none absolute left-8 top-20 h-72 w-72 rounded-full bg-[#2563EB]/12 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#22C55E]/10 blur-3xl" />
-
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col px-6 py-6 sm:px-8 lg:px-10">
+    <div className="relative min-h-screen overflow-hidden bg-white text-slate-950 selection:bg-[#2563EB]/20">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1500px] flex-col px-6 py-6 sm:px-8 lg:px-10">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <AutoVerseBrand />
           <div className="text-sm text-slate-600">

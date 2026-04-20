@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, Github, KeyRound } from 'lucide-react'
@@ -9,18 +9,39 @@ import { Input } from '@/components/ui/input'
 import { AutoVerseAuthShell } from '@/components/autoverse-auth-shell'
 import { avInput } from '@/components/autoverse-ui'
 import { cn } from '@/lib/utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCredentials } from '@/store/slices/authSlice'
+import { api } from '@/lib/api'
+import { RootState } from '@/store'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('aria@autoverse.com')
-  const [password, setPassword] = useState('demo-password')
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard')
+    }
+  }, [isAuthenticated, router])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 900))
-    router.push('/dashboard?mode=demo')
+    setError('')
+    try {
+      const data = await api.auth.login({ email, password })
+      dispatch(setCredentials({ user: data, token: data.token }))
+      router.push('/dashboard')
+    } catch (err: any) {
+      setError(err.message || 'Failed to login')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   async function handleProviderLogin() {
@@ -46,6 +67,7 @@ export default function LoginPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+        {error && <p className="text-sm text-red-500">{error}</p>}
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium text-slate-700">
             Email address

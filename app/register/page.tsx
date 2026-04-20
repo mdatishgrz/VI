@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Github, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -8,19 +8,40 @@ import { Input } from '@/components/ui/input'
 import { AutoVerseAuthShell } from '@/components/autoverse-auth-shell'
 import { avInput } from '@/components/autoverse-ui'
 import { cn } from '@/lib/utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCredentials } from '@/store/slices/authSlice'
+import { api } from '@/lib/api'
+import { RootState } from '@/store'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
   const [name, setName] = useState('Aria Mendoza')
   const [email, setEmail] = useState('aria@autoverse.com')
-  const [password, setPassword] = useState('premium-demo')
+  const [password, setPassword] = useState('password123')
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard')
+    }
+  }, [isAuthenticated, router])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    router.push('/dashboard?welcome=new')
+    setError('')
+    try {
+      const data = await api.auth.register({ name, email, password })
+      dispatch(setCredentials({ user: data, token: data.token }))
+      router.push('/dashboard?welcome=new')
+    } catch (err: any) {
+      setError(err.message || 'Failed to register')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   async function handleSocialSignup() {
@@ -46,6 +67,7 @@ export default function RegisterPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+        {error && <p className="text-sm text-red-500">{error}</p>}
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium text-slate-700">
             Full name

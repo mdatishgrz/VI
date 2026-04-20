@@ -4,9 +4,12 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Car, MessageSquare, Compass, PlusCircle, UserCircle, Globe } from 'lucide-react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store'
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth)
 
   const navLinks = [
     { name: 'Home', href: '/', icon: Globe },
@@ -18,7 +21,7 @@ export function Header() {
 
   return (
     <header className="border-b border-border bg-card sticky top-0 z-50">
-      <div className="container max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container max-w-[1500px] mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-extrabold text-sm shadow-sm group-hover:scale-105 transition-transform">
             AV
@@ -45,16 +48,21 @@ export function Header() {
 
         {/* Actions */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button variant="ghost" className="h-9 font-semibold text-foreground/80" asChild>
-             <Link href="/create"><PlusCircle className="w-4 h-4 mr-2" /> Post Issue</Link>
-          </Button>
-          <div className="w-px h-5 bg-border mx-1"></div>
-          <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-primary rounded-full bg-muted/50" asChild>
-             <Link href="/profile" aria-label="User Profile"><UserCircle className="w-5 h-5" /></Link>
-          </Button>
-          <Button className="h-9 font-semibold shadow-sm rounded-lg" asChild>
-             <Link href="/login">Sign In</Link>
-          </Button>
+          {isAuthenticated ? (
+            <>
+              <Button variant="ghost" className="h-9 font-semibold text-foreground/80" asChild>
+                 <Link href="/create"><PlusCircle className="w-4 h-4 mr-2" /> Post Issue</Link>
+              </Button>
+              <div className="w-px h-5 bg-border mx-1"></div>
+              <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-primary rounded-full bg-muted/50" asChild>
+                 <Link href="/profile" aria-label="User Profile"><UserCircle className="w-5 h-5" /></Link>
+              </Button>
+            </>
+          ) : (
+            <Button className="h-9 font-semibold shadow-sm rounded-lg" asChild>
+               <Link href="/login">Sign In</Link>
+            </Button>
+          )}
         </div>
 
         {/* Mobile menu toggle */}
@@ -69,7 +77,7 @@ export function Header() {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="border-t border-border bg-card lg:hidden absolute w-full shadow-lg">
-          <div className="container max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+          <div className="container max-w-[1500px] mx-auto px-4 py-4 flex flex-col gap-2">
             {navLinks.map((link) => (
                <Link 
                  key={link.name}

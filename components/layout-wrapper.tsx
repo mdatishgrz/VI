@@ -44,7 +44,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const activeItem = navItems.find((item) => isActiveRoute(pathname, item.href))
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#F5F9FF] text-slate-900">
+    <div className="flex h-screen w-full overflow-hidden bg-white text-slate-900">
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-slate-950/25 backdrop-blur-sm md:hidden"

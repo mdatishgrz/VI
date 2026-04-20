@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Bell, Bookmark, CheckCircle2, LogOut, Shield } from 'lucide-react'
 import { LayoutWrapper } from '@/components/layout-wrapper'
 import {
@@ -11,20 +12,40 @@ import {
   avPanel,
   avPanelSoft,
 } from '@/components/autoverse-ui'
-import { currentUser, profileActivity, savedCollections } from '@/lib/autoverse-data'
+import { profileActivity, savedCollections } from '@/lib/autoverse-data'
 import { cn } from '@/lib/utils'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '@/store'
+import { logout } from '@/store/slices/authSlice'
+import { api } from '@/lib/api'
 
 const tabs = ['Activity', 'Saved', 'Settings'] as const
 
 export default function ProfilePage() {
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const { user: currentUser } = useSelector((state: RootState) => state.auth)
   const [tab, setTab] = useState<(typeof tabs)[number]>('Activity')
   const [notifications, setNotifications] = useState(true)
   const [privacyMode, setPrivacyMode] = useState(false)
 
+  useEffect(() => {
+    if (!currentUser) {
+      router.push('/login')
+    }
+  }, [currentUser, router])
+
+  const handleLogout = () => {
+    dispatch(logout())
+    router.push('/login')
+  }
+
+  if (!currentUser) return null;
+
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-6 py-8 sm:px-8 lg:px-10">
           <AutoVersePageIntro
             eyebrow="Profile"
             title="Your identity layer across the AutoVerse network."
@@ -46,9 +67,9 @@ export default function ProfilePage() {
                 <p className="mt-4 text-sm leading-7 text-slate-600">{currentUser.bio}</p>
                 <div className="mt-6 grid grid-cols-3 gap-3">
                   {[
-                    [currentUser.solutions.toString(), 'Solutions'],
-                    [currentUser.savedItems.toString(), 'Saved'],
-                    [currentUser.streak.toString(), 'Streak'],
+                    [(currentUser.solutions || 0).toString(), 'Solutions'],
+                    [(currentUser.savedItems || 0).toString(), 'Saved'],
+                    [(currentUser.streak || 0).toString(), 'Streak'],
                   ].map(([value, label]) => (
                     <div key={label} className={cn(avPanelSoft, 'p-4')}>
                       <p className="text-xl font-semibold tracking-[-0.04em] text-slate-950">{value}</p>
@@ -73,16 +94,16 @@ export default function ProfilePage() {
                   </span>
                   {notifications ? 'On' : 'Off'}
                 </button>
-                <Link
-                  href="/login"
+                <button
+                  onClick={handleLogout}
                   className="flex w-full items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-red-600 transition hover:bg-red-50"
                 >
                   <span className="inline-flex items-center gap-2">
                     <LogOut className="h-4 w-4" />
                     Sign out
                   </span>
-                  Demo
-                </Link>
+                  Logout
+                </button>
               </div>
             </div>
 

@@ -42,7 +42,7 @@ export default function MyPostsPage() {
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-6 py-8 sm:px-8 lg:px-10">
           <AutoVersePageIntro
             eyebrow="My Posts"
             title="Manage your threads, edits, and conversation momentum."

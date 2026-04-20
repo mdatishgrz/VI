@@ -66,7 +66,7 @@ function CommunityPageContent() {
   return (
     <LayoutWrapper>
       <AutoVerseWorkspace>
-        <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-6 py-8 sm:px-8 lg:px-10">
           {createdBanner && (
             <div className={cn(avPanelSoft, 'mb-8 flex items-center justify-between gap-4 p-5')}>
               <div>
@@ -276,7 +276,7 @@ export default function CommunityPage() {
       fallback={
         <LayoutWrapper>
           <AutoVerseWorkspace>
-            <div className="mx-auto max-w-7xl px-6 py-10 text-sm text-slate-600 sm:px-8 lg:px-10">Loading community...</div>
+            <div className="mx-auto max-w-[1500px] px-6 py-10 text-sm text-slate-600 sm:px-8 lg:px-10">Loading community...</div>
           </AutoVerseWorkspace>
         </LayoutWrapper>
       }

@@ -352,7 +352,7 @@ function FeaturePreview({ type }: { type: 'insights' | 'community' | 'news' | 'm
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#F5F9FF] text-slate-950 selection:bg-[#2563EB]/20 selection:text-slate-950">
+    <div className="min-h-screen overflow-x-hidden bg-white text-slate-950 selection:bg-[#2563EB]/20 selection:text-slate-950">
       <style>{`
         @keyframes autoverse-float {
           0%, 100% { transform: translate3d(0, 0, 0); }
@@ -383,20 +383,13 @@ export default function HomePage() {
       `}</style>
 
       <div className="relative isolate">
-        <div
-          className="absolute inset-0 -z-20"
-          style={{
-            background:
-              'radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.18), transparent 22%), radial-gradient(circle at 86% 14%, rgba(34, 197, 94, 0.12), transparent 18%), radial-gradient(circle at 50% 82%, rgba(125, 211, 252, 0.18), transparent 25%), linear-gradient(180deg, #F9FBFF 0%, #EEF5FF 50%, #E6EEF8 100%)',
-          }}
-        />
         <div className="autoverse-grid absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(circle_at_center,black,transparent_82%)]" />
         <div className="absolute left-6 top-24 -z-10 h-72 w-72 rounded-full bg-[#2563EB]/12 blur-3xl" />
         <div className="absolute right-0 top-64 -z-10 h-80 w-80 rounded-full bg-[#22C55E]/10 blur-3xl" />
         <div className="absolute bottom-32 left-1/3 -z-10 h-72 w-72 rounded-full bg-cyan-300/14 blur-3xl" />
 
         <header className="sticky top-0 z-40 border-b border-white/70 bg-white/65 backdrop-blur-2xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-8 lg:px-10">
+          <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-5 sm:px-8 lg:px-10">
             <Link href="/" className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/80 bg-white/85 shadow-[0_12px_30px_rgba(37,99,235,0.18)]">
                 <Orbit className="h-5 w-5 text-[#2563EB]" />
@@ -444,7 +437,7 @@ export default function HomePage() {
         </header>
 
         <main>
-          <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 sm:px-8 lg:px-10 lg:pb-32 lg:pt-24">
+          <section className="relative mx-auto max-w-[1500px] px-6 pb-24 pt-20 sm:px-8 lg:px-10 lg:pb-32 lg:pt-24">
             <div className="grid items-center gap-16 lg:grid-cols-[1.02fr_0.98fr]">
               <div className="max-w-2xl">
                 <div className={`${glassChip} mb-8 inline-flex items-center gap-2`}>
@@ -646,7 +639,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="features" className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section id="features" className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <SectionHeading
               eyebrow="Feature Grid"
               title="A polished platform layer for vehicle intelligence, community, and commerce"
@@ -691,7 +684,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="vehicles" className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section id="vehicles" className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading
                 eyebrow="Explore Vehicles"
@@ -735,7 +728,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="community" className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section id="community" className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
               <div className={`${glassPanel} p-8`}>
                 <SectionHeading
@@ -794,7 +787,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="ai-mechanic" className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section id="ai-mechanic" className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <div className="grid gap-8 lg:grid-cols-2">
               <div className={`${glassPanel} p-8 lg:p-10`}>
                 <SectionHeading
@@ -898,7 +891,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="news" className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section id="news" className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <SectionHeading
               eyebrow="News & Trends"
               title="A premium feed for the stories shaping mobility, engineering, and culture"
@@ -937,7 +930,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
               <SectionHeading
                 eyebrow="Platform Features"
@@ -962,7 +955,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-10">
+          <section className="mx-auto max-w-[1500px] px-6 py-24 sm:px-8 lg:px-10">
             <div className={`${glassPanel} relative overflow-hidden px-8 py-12 sm:px-10 lg:px-14 lg:py-14`}>
               <div
                 className="absolute inset-0 opacity-90"
@@ -1007,7 +1000,7 @@ export default function HomePage() {
         </main>
 
         <footer className="border-t border-white/70 bg-white/55 backdrop-blur-2xl">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr] lg:px-10">
+          <div className="mx-auto grid max-w-[1500px] gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr] lg:px-10">
             <div>
               <Link href="/" className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/80 bg-white/85 shadow-[0_12px_28px_rgba(37,99,235,0.14)]">
